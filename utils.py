@@ -3,10 +3,10 @@ import psycopg2 # pip install psycopg2
 
 def connect_db(host, port, user, password, database):
     connection = psycopg2.connect(
-            user = user,
+            user     = user,
             password = password,
-            host = host, 
-            port = port,
+            host     = host, 
+            port     = port,
             database = database
         )
 
@@ -32,10 +32,10 @@ def insert_into_table(values, table_name, db_name):
     cursor = connection.cursor()
 
     query = "INSERT INTO " + table_name + "(firstname, age, politicalView) \
-                VALUES (""'"  + values[1] + "',"  + str(values[2])+ ",'"  + values[3] + "');"
-    cursor.execute(query)
-    connection.commit()
+         VALUES (""'"  + values[0] + "',"  + str(values[1])+ ",'"  + values[2] + "');"
+    cursor.execute(query) # comment
 
+    connection.commit()
     close_connection(connection,cursor)
 
 def delete_from_table(key, value, table_name, db_name):
@@ -43,6 +43,16 @@ def delete_from_table(key, value, table_name, db_name):
     cursor = connection.cursor()
 
     query = "DELETE FROM " + table_name + " WHERE " + key + "=" + str(value) + ";"
+    cursor.execute(query)
+    connection.commit()
+
+    close_connection(connection,cursor)
+
+def update_table(set_key, set_value, cond_key, cond_value, table_name, db_name):
+    connection = connect_db("localhost","5432","postgres","postgres",db_name)
+    cursor = connection.cursor()
+
+    query = "UPDATE " + table_name + "SET " + set_key + "=" + set_value + "WHERE " + cond_key + "=" + str(cond_value) + ";"
     cursor.execute(query)
     connection.commit()
 
