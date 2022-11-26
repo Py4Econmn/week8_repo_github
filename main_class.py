@@ -15,3 +15,16 @@ for index, row in df.iterrows():
 
 print("Finished populating employee table. Done!")
 
+
+# Other CRUD operations
+
+# READ
+Chimgee = Employee("Chimeg")
+Chimgee.read_me() #
+
+# UPDATE
+Kherlen = Employee("Kherlen")
+Kherlen.update_me('age',32) 
+
+# DELETE
+Kherlen.delete_me()

@@ -1,5 +1,5 @@
 import psycopg2 # pip install psycopg2
-
+import pandas as pd
 
 def connect_db(host, port, user, password, database):
     connection = psycopg2.connect(
@@ -42,7 +42,7 @@ def delete_from_table(key, value, table_name, db_name):
     connection = connect_db("localhost","5432","postgres","postgres",db_name)
     cursor = connection.cursor()
 
-    query = "DELETE FROM " + table_name + " WHERE " + key + "=" + str(value) + ";"
+    query = "DELETE FROM " + table_name + " WHERE " + key + "='" + str(value) + "';"
     cursor.execute(query)
     connection.commit()
 
@@ -52,8 +52,23 @@ def update_table(set_key, set_value, cond_key, cond_value, table_name, db_name):
     connection = connect_db("localhost","5432","postgres","postgres",db_name)
     cursor = connection.cursor()
 
-    query = "UPDATE " + table_name + "SET " + set_key + "=" + set_value + "WHERE " + cond_key + "=" + str(cond_value) + ";"
+    query = "UPDATE " + table_name + " SET " + set_key + "=" + str(set_value) + " WHERE " + cond_key + "='" + str(cond_value) + "';"
     cursor.execute(query)
     connection.commit()
 
     close_connection(connection,cursor)
+
+def read_table(cond_key, cond_value, table_name, db_name):
+    connection = connect_db("localhost","5432","postgres","postgres",db_name)
+    cursor = connection.cursor()
+
+    query = "SELECT * FROM " + table_name + " WHERE " + cond_key + "= '" + str(cond_value) + "';"
+    cursor.execute(query)
+    record = cursor.fetchall()
+    colnames = [desc[0] for desc in cursor.description]
+    df = pd.DataFrame(record)
+    df.columns = colnames
+
+    close_connection(connection,cursor)
+
+    return df

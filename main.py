@@ -22,12 +22,12 @@ def prepate_data():
     print("Starting ...") 
 
     main_dir = r"D:\Documents\python\repo\Introduction_Python"
-    sys.path.append(r"D:\Documents\python\repo\week8_repo") # add folder to path
+    # sys.path.append(r"D:\Documents\python\repo\week8_repo") # add folder to path
 
     ### IMPORT
     df = pd.read_excel(main_dir + os.sep + "3_Data_table\data\data.xlsx")
 
-    print("Import excel data.")
+    print("Imported excel data.")
 
     return df
 
