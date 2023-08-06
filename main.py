@@ -18,18 +18,22 @@ def gen_table():
     print("Created employee table.")
 
 
-def prepate_data():
-    print("Starting ...") 
+def prepate_data(ready_data=True):
+    print("Data preparation starting ...") 
 
-    main_dir = r"D:\Documents\python\repo\Introduction_Python"
-    # sys.path.append(r"D:\Documents\python\repo\week8_repo") # add folder to path
+    if ready_data == True:
+        main_dir = r"D:\Documents\python\repo\Introduction_Python"
+        # sys.path.append(r"D:\Documents\python\repo\week8_repo") # add folder to path
 
-    ### IMPORT
-    df = pd.read_excel(main_dir + os.sep + "3_Data_table\data\data.xlsx")
+        ### IMPORT
+        df = pd.read_excel(main_dir + os.sep + "3_Data_table\data\data.xlsx")
 
-    print("Imported excel data.")
+        print("Imported excel data.")
+    else: 
+        df = ut.gen_data()
+
+        print("Created a random data.")
+
+
 
     return df
-
-
-

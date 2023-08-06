@@ -1,5 +1,7 @@
 import psycopg2 # pip install psycopg2
 import pandas as pd
+import names
+import random
 
 def connect_db(host, port, user, password, database):
     connection = psycopg2.connect(
@@ -72,5 +74,21 @@ def read_table(cond_key, cond_value, table_name, db_name):
     df.columns = colnames
 
     close_connection(connection,cursor)
+
+    return df
+
+def gen_data(length = 25):
+    """
+    Install first the package "names": pip install names
+        https://en.moonbooks.org/Articles/How-to-generate-random-names-first-and-last-names-with-python-/
+        https://pynative.com/python-random-sample/
+    """
+
+    list_fn  = [names.get_first_name() for _ in range(length)]
+    list_age = [random.randint(18, 50) for _ in range(length)]
+    list_pv  = random.choices(["left","right"], k=length)
+
+    data = {'firstName': list_fn, 'age': list_age, 'politicalView': list_pv}
+    df = pd.DataFrame(data)
 
     return df
