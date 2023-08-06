@@ -1,39 +1,49 @@
-## Import and upload data to database
-
-## import packages
-import pandas as pd
-import os
-import sys
+from employee_class import Employee
 import utils as ut
 
-def gen_table():
-    ### Create table
-    qr = "CREATE TABLE IF NOT EXISTS employee (id serial PRIMARY KEY, \
-            firstname text NOT NULL, \
-            age INT, \
-            politicalView text);"
-    db = "week8"
+ut.gen_table()
+df = ut.prepate_data(ready_data=False)
 
-    ut.create_table(qr, db)
-    print("Created employee table.")
+# Database CRUD operations in Python
+# CREATE
+for index, row in df.iterrows():
 
+    try:
+        Person = Employee(row["firstName"], row["age"], row["politicalView"])
+        Person.add_me()
+        print("Add row {}.".format(index))
+    except:
+        print("Couldn't add new row")
 
-def prepate_data(ready_data=True):
-    print("Data preparation starting ...") 
-
-    if ready_data == True:
-        main_dir = r"D:\Documents\python\repo\Introduction_Python"
-        # sys.path.append(r"D:\Documents\python\repo\week8_repo") # add folder to path
-
-        ### IMPORT
-        df = pd.read_excel(main_dir + os.sep + "3_Data_table\data\data.xlsx")
-
-        print("Imported excel data.")
-    else: 
-        df = ut.gen_data()
-
-        print("Created a random data.")
+print("Finished populating employee table with random data. Done!")
 
 
+df1 = ut.prepate_data(ready_data=True)
 
-    return df
+for index, row in df1.iterrows():
+
+    try:
+        Person = Employee(row["firstName"], row["age"], row["politicalView"])
+        Person.add_me()
+        print("Add row {}.".format(index))
+    except:
+        print("Couldn't add new row")
+
+print("Finished populating employee table with excel data. Done!")
+
+# single add
+Bold = Employee("Bold", "27", "left")
+Bold.add_me()
+print("Add row {}.".format("Bold"))
+
+# Other CRUD operations
+# READ
+Chimgee = Employee("Chimeg")
+Chimgee.read_me() #
+
+# UPDATE
+Kherlen = Employee("Kherlen")
+Kherlen.update_me('age',32) 
+
+# DELETE
+Kherlen.delete_me()

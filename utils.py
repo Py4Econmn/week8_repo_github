@@ -2,6 +2,7 @@ import psycopg2 # pip install psycopg2
 import pandas as pd
 import names
 import random
+import os
 
 def connect_db(host, port, user, password, database):
     connection = psycopg2.connect(
@@ -90,5 +91,37 @@ def gen_data(length = 25):
 
     data = {'firstName': list_fn, 'age': list_age, 'politicalView': list_pv}
     df = pd.DataFrame(data)
+
+    return df
+
+def gen_table():
+    ### Create table
+    qr = "CREATE TABLE IF NOT EXISTS employee (id serial PRIMARY KEY, \
+            firstname text NOT NULL, \
+            age INT, \
+            politicalView text);"
+    db = "week8"
+
+    create_table(qr, db)
+    print("Created employee table.")
+
+
+def prepate_data(ready_data=True):
+    print("Data preparation starting ...") 
+
+    if ready_data == True:
+        main_dir = r"D:\Documents\python\repo\Introduction_Python"
+        # sys.path.append(r"D:\Documents\python\repo\week8_repo") # add folder to path
+
+        ### IMPORT
+        df = pd.read_excel(main_dir + os.sep + "3_Data_table\data\data.xlsx")
+
+        print("Imported excel data.")
+    else: 
+        df = gen_data()
+
+        print("Created a random data.")
+
+
 
     return df
