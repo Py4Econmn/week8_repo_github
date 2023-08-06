@@ -48,6 +48,8 @@ def delete_from_table(key, value, table_name, db_name):
 
     close_connection(connection,cursor)
 
+    print("Deleted row with value {value1} in {key1} from table {table_name1}.".format(value1=value, key1=key, table_name1=table_name))
+
 def update_table(set_key, set_value, cond_key, cond_value, table_name, db_name):
     connection = connect_db("localhost","5432","postgres","postgres",db_name)
     cursor = connection.cursor()

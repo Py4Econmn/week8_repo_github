@@ -4,6 +4,8 @@ import main
 main.gen_table()
 df = main.prepate_data()
 
+# Database CRUD operations in Python
+# CREATE
 for index, row in df.iterrows():
 
     try:
@@ -15,9 +17,12 @@ for index, row in df.iterrows():
 
 print("Finished populating employee table. Done!")
 
+# single add
+Bold = Employee("Bold", "27", "left")
+Bold.add_me()
+print("Add row {}.".format("Bold"))
 
 # Other CRUD operations
-
 # READ
 Chimgee = Employee("Chimeg")
 Chimgee.read_me() #
