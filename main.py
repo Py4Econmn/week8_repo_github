@@ -1,6 +1,7 @@
 from employee_class import Employee
 import utils as ut
 
+# Make sure week8 database exists
 ut.gen_table()
 df = ut.prepate_data(ready_data=False)
 
@@ -44,6 +45,9 @@ Chimgee.read_me() #
 # UPDATE
 Kherlen = Employee("Kherlen")
 Kherlen.update_me('age',32) 
+
+Kheegii = Employee("Kherlen")
+Kheegii.read_me() #
 
 # DELETE
 Kherlen.delete_me()

@@ -114,7 +114,7 @@ def prepate_data(ready_data=True):
         # sys.path.append(r"D:\Documents\python\repo\week8_repo") # add folder to path
 
         ### IMPORT
-        df = pd.read_excel(main_dir + os.sep + "3_Data_table\data\data.xlsx")
+        df = pd.read_excel(main_dir + os.sep + "2_Data_basics/data_pynp/data.xlsx")
 
         print("Imported excel data.")
     else: 
