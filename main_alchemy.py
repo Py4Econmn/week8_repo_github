@@ -64,7 +64,7 @@ if __name__ == '__main__':
     # Create a new employee
     create_employee("John Doe", 30, 60000, "john@example.com")
 
-    # Read and display all employees
+    # # Read and display all employees
     employees = read_employees()
     print("Employees:")
     for employee in employees:
@@ -73,5 +73,5 @@ if __name__ == '__main__':
     # Update an employee's information
     update_employee(1, {"salary": 65000, "contact_info": "john.doe@example.com"})
 
-    # Delete an employee
+    # # Delete an employee
     delete_employee(1)

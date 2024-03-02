@@ -24,7 +24,7 @@ pattern = '\d+' # find all numbers      + *(greedy algorithm)
 result = re.findall(pattern, string) 
 print(result)
 
-result2 = re.findall('\d{1,2}', string) 
+result2 = re.findall('\d{1,3}', string) 
 result2 = re.findall('\d{2}', string) 
 result3 = re.findall('\d{3}', string) 
 result1 = re.findall('\d{1}', string) 
@@ -57,23 +57,24 @@ match.group()
 pattern = '(\d{3})(\s)(\d{2})'
 match = re.search(pattern, string) 
 match.group(3)
+match.groups()
 
 # lookahead, behind
 string = '39801 356, 2 102 11 is 11'
 pattern = '\s(\d{3})\s(\d{2})\s' # Space, three digit numbers followed by space, followed by two digit number
 # match variable contains a Match object. 
 match = re.search(pattern, string) 
+match.groups()
 
 string = '39801 356, 2aa_adfd102 11 dlfjdk is 11'
 pattern = '(?<!\d)(\d{3})\s(\d{2})(?!\d)' # Three digit number followed by space followed by two digit number
 # match variable contains a Match object. 
 match = re.search(pattern, string) 
-match
+match.groups()
 
 string = '39801 356, 2aa_adfd102 11 dlfjdk is 11 153 22'
 pattern = '(?<!\d)(\d{3})\s(\d{2})(?!\d)' 
 match = re.findall(pattern, string) 
-match
 
 
 # match - match at the beginning of string
@@ -84,7 +85,7 @@ result.group()
 
 # split
 string = 'Twelve 121563245, Eighty 1 nine 89.'
-pattern = '\d{}'
+pattern = '\d{1}'
 result = re.split(pattern, string) 
 print(result)
 
@@ -92,6 +93,9 @@ result = re.split("\s+", "  Baldan   Gombo ")
 print(result)
 
 result = re.split("\s", "  Baldan   Gombo") 
+print(result)
+
+result = re.split("\s", "Baldan Gombo") 
 print(result)
 
 # sub

@@ -3,7 +3,8 @@ import utils as ut
 
 # Make sure week8 database exists
 ut.gen_table()
-df = ut.prepate_data(ready_data=False)
+ready_data = True
+df = ut.prepate_data(ready_data=ready_data)
 
 # Database CRUD operations in Python
 # CREATE
@@ -12,25 +13,26 @@ for index, row in df.iterrows():
     try:
         Person = Employee(row["firstName"], row["age"], row["politicalView"])
         Person.add_me()
-        print("Add row {}.".format(index))
+        print("Added row {}.".format(index))
     except:
         print("Couldn't add new row")
 
-print("Finished populating employee table with random data. Done!")
+datatype = 'excel' if ready_data else 'random'
+print(f"Finished populating employee table with {datatype} data. Done!")
 
 
-df1 = ut.prepate_data(ready_data=True)
+# df1 = ut.prepate_data(ready_data=True)
 
-for index, row in df1.iterrows():
+# for index, row in df1.iterrows():
 
-    try:
-        Person = Employee(row["firstName"], row["age"], row["politicalView"])
-        Person.add_me()
-        print("Add row {}.".format(index))
-    except:
-        print("Couldn't add new row")
+#     try:
+#         Person = Employee(row["firstName"], row["age"], row["politicalView"])
+#         Person.add_me()
+#         print("Add row {}.".format(index))
+#     except:
+#         print("Couldn't add new row")
 
-print("Finished populating employee table with excel data. Done!")
+# print("Finished populating employee table with excel data. Done!")
 
 # single add
 Bold = Employee("Bold", "27", "left")

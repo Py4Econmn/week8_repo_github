@@ -64,6 +64,7 @@ try:
         print("Result: {}".format(a))
     else:
         raise myStrangeError()
+    a = 1/0
 except myStrangeError:
     print("My strange error occurred!, so adding only 10")
     a = a + 10
