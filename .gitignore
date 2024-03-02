@@ -1,1 +1,7 @@
 *.pyc
+*.pyo
+ppt/*
+*/ppt/*
+!*/ppt/*.pdf
+!*/ppt/*.tex
+!*/ppt/figures/
